@@ -1,9 +1,10 @@
 from classes import projeto as pjt
+from classes import aluno as aln
 
 def imprimir_saida(emparelhamento : list[pjt.Projeto], logs : list[str]):
-    alunos_emparelhados = 0
+    pares = 0
     for projeto in emparelhamento:
-        alunos_emparelhados += len(projeto.alunos)
+        pares += len(projeto.alunos)
 
     with open("saidaProj2Tag.txt", 'w') as saida:
         saida.write("Log de iterações:\n")
@@ -12,8 +13,9 @@ def imprimir_saida(emparelhamento : list[pjt.Projeto], logs : list[str]):
 
         saida.write('\n')
 
-        saida.write(f"Emparelhamento máximo e estável com {alunos_emparelhados} pares Projetos x Alunos:\n")
+        saida.write(f"Emparelhamento máximo e estável com {pares} pares Projetos x Alunos:\n")
         for projeto in emparelhamento:
-            saida.write(f"\t{projeto.id} : {projeto.alunos if projeto.alunos else 'vazio'}\n")
+            for aluno in projeto.alunos:
+                saida.write(f"\t{projeto.id, aluno}\n")
 
         saida.close()
